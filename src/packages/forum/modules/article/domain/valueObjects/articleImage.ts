@@ -15,6 +15,10 @@ export class ArticleImage extends ValueObject<IArticleImageProps> {
     super(props);
   }
 
+  public static create(props: IArticleImageProps): ArticleImage {
+    return new ArticleImage(props);
+  }
+
   protected ensureValidFormat(value: IArticleImageProps): void {
     const joiSchema = Joi.object().keys({
       value: Joi.string().uri().allow(null),
@@ -26,9 +30,5 @@ export class ArticleImage extends ValueObject<IArticleImageProps> {
       throw new DomainError(
         'ArticleImage: ' + joiResult.error.details[0].message,
       );
-  }
-
-  public static create(props: IArticleImageProps): ArticleImage {
-    return new ArticleImage(props);
   }
 }

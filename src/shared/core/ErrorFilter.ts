@@ -30,6 +30,7 @@ export class DomainExceptionFilter implements ExceptionFilter {
       return response.status(Number(status)).json({
         statusCode: status,
         timestamp: new Date().toISOString(),
+        method: request.method,
         path: request.url,
         message,
       });
@@ -42,6 +43,7 @@ export class DomainExceptionFilter implements ExceptionFilter {
     return response.status(500).json({
       statusCode: 500,
       timestamp: new Date().toISOString(),
+      method: request.method,
       path: request.url,
       message: exception.message,
     });

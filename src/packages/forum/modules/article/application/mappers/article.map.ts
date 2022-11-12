@@ -1,8 +1,8 @@
-import { ArticleDto } from '@article/application/dto/article.dto';
+import { ArticleCreateDTO } from '@article/application/dto/article-create.dto';
 import { Article } from '@article/domain/entities/article';
 
 export class ArticleMap {
-  static toDTO(domain: Article): ArticleDto {
+  static toDTO(domain: Article): ArticleCreateDTO {
     return {
       id: domain.articleId.id.toString(),
       title: domain.title.value,

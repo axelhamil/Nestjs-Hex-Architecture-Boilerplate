@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsString } from 'class-validator';
 
-export class ArticleDto {
+export class ArticleCreateDTO {
   @IsOptional()
   @IsString()
   readonly id?: string;

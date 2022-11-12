@@ -1,16 +1,8 @@
-import {
-  BaseEntity,
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Node } from '@forumCommon/pagination/models/node.model';
+import { Column, Entity } from 'typeorm';
 
 @Entity()
-export class Articles extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+export class Articles extends Node {
   @Column({
     nullable: true,
   })
@@ -25,17 +17,4 @@ export class Articles extends BaseEntity {
     nullable: true,
   })
   image: string;
-
-  @CreateDateColumn({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
-  })
-  createdAt: Date;
-
-  @CreateDateColumn({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
-    onUpdate: 'CURRENT_TIMESTAMP(6)',
-  })
-  updatedAt: Date;
 }

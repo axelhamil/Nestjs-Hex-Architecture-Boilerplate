@@ -15,6 +15,10 @@ export class ArticleDescription extends ValueObject<IArticleDescriptionProps> {
     super(props);
   }
 
+  public static create(props: IArticleDescriptionProps): ArticleDescription {
+    return new ArticleDescription(props);
+  }
+
   protected ensureValidFormat(value: IArticleDescriptionProps): void {
     const joiSchema = Joi.object().keys({
       value: Joi.string().min(3).max(255).allow(null),
@@ -26,9 +30,5 @@ export class ArticleDescription extends ValueObject<IArticleDescriptionProps> {
       throw new DomainError(
         'ArticleDescription: ' + joiResult.error.details[0].message,
       );
-  }
-
-  public static create(props: IArticleDescriptionProps): ArticleDescription {
-    return new ArticleDescription(props);
   }
 }

@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "strict": true,
+    "useUnknownInCatchVariables": false,
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -19,6 +21,7 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
         "@article/*": ["src/packages/forum/modules/article/*"],
+        "@forumCommon/*": ["src/packages/forum/modules/common/*"],
         "@forumInterfaces/*": ["src/packages/forum/interfaces/*"],
         "@shared/*": ["src/shared/*"]
     }

@@ -10,6 +10,7 @@ module.exports = {
     '@shared/(.*)': '<rootDir>/shared/$1',
     '@forumInterfaces/(.*)': '<rootDir>/packages/forum/interfaces/$1',
     '@article/(.*)': '<rootDir>/packages/forum/modules/article/$1',
+    '@forumCommon/(.*)': '<rootDir>/packages/forum/modules/common/$1',
   },
   coverageDirectory: '../coverage',
   testEnvironment: 'node',

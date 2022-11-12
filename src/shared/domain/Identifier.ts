@@ -1,5 +1,5 @@
 export class Identifier<T> {
-  constructor(private value: T) {
+  constructor(private readonly value: T) {
     this.value = value;
   }
 
@@ -16,10 +16,6 @@ export class Identifier<T> {
   toString() {
     return String(this.value);
   }
-
-  /**
-   * Return raw value of identifier
-   */
 
   toValue(): T {
     return this.value;

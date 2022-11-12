@@ -9,7 +9,7 @@ export abstract class ValueObject<T extends ValueObjectProps> {
 
   protected constructor(values: T) {
     if (values === undefined) {
-      throw new DomainError('ValueObject values cannot be undefined.');
+      throw new DomainError('ValueObject: values cannot be undefined.');
     }
 
     this.ensureValidFormat(values);

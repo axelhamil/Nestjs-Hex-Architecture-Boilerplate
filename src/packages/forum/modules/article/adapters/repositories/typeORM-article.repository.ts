@@ -1,8 +1,14 @@
 import { Articles } from '@article/adapters/models/articles.model';
-import { IArticleRepository } from '@article/application/spi/articleRepo.interface';
+import { ArticlesPaginationArgs } from '@article/application/dto/articles-pagination.dto';
+import { ArticleMap } from '@article/application/mappers/article.map';
+import { ArticleDetailsMap } from '@article/application/mappers/articleDetailsMap';
+import {
+  ArticlesResponse,
+  IArticleRepository,
+} from '@article/application/spi/articleRepo.interface';
 import { Article } from '@article/domain/entities/article';
 import { ArticleId } from '@article/domain/entities/articleId';
-import { ArticleMap } from '@article/domain/mappers/article.map';
+import { SortDirection } from '@forumCommon/pagination/dto/pagination.dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Equal, Repository } from 'typeorm';
@@ -41,10 +47,43 @@ export class TypeORMArticleRepository implements IArticleRepository {
     if (isNewModule) {
       try {
         await this.articleRepository.save(rawTypeOrmArticle);
-      } catch (err) {
+      } catch (error) {
         await this.delete(article.articleId.id.toString());
-        throw new Error(err.toString());
+        throw new Error(error.toString());
       }
+    } else {
+      await this.articleRepository.update(
+        { id: article.articleId.id.toString() },
+        rawTypeOrmArticle,
+      );
     }
+  }
+
+  async getAllArticles(
+    args: ArticlesPaginationArgs,
+  ): Promise<ArticlesResponse> {
+    const qb = this.articleRepository.createQueryBuilder('articles');
+    qb.take(args.take);
+    qb.skip(args.skip);
+    if (args.sortBy && !!args.sortBy.createdAt) {
+      qb.addOrderBy(
+        'articles.createdAt',
+        args.sortBy.createdAt === SortDirection.ASC ? 'ASC' : 'DESC',
+      );
+    }
+    if (args.sortBy && args.sortBy.title !== null) {
+      qb.addOrderBy(
+        'articles.title',
+        args.sortBy.title === SortDirection.ASC ? 'ASC' : 'DESC',
+      );
+    }
+
+    const [rawArticles, totalCount] = await qb.getManyAndCount();
+
+    const nodes = rawArticles.map((rawArticle) =>
+      ArticleDetailsMap.toDomain(rawArticle),
+    );
+
+    return { nodes, totalCount };
   }
 }

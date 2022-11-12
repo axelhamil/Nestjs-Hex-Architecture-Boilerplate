@@ -5,12 +5,12 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as os from 'os';
 import { join } from 'path';
 
-import { AppModule } from './app.module';
+import { ForumModule } from './packages/forum/forum.module';
 
 const port = process.env.PORT || 3000;
 
 (async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {});
+  const app = await NestFactory.create<NestExpressApplication>(ForumModule, {});
 
   // Express
   app.setGlobalPrefix('/api');

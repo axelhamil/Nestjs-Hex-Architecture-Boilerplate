@@ -23,4 +23,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     ArticleModule,
   ],
 })
-export class AppModule {}
+export class ForumModule {}

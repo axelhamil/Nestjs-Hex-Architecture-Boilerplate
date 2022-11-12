@@ -15,6 +15,10 @@ export class ArticleTitle extends ValueObject<IArticleTitleProps> {
     super(props);
   }
 
+  public static create(props: IArticleTitleProps): ArticleTitle {
+    return new ArticleTitle(props);
+  }
+
   protected ensureValidFormat(value: IArticleTitleProps): void {
     const joiSchema = Joi.object().keys({
       value: Joi.string().min(3).max(255).allow(null),
@@ -26,9 +30,5 @@ export class ArticleTitle extends ValueObject<IArticleTitleProps> {
       throw new DomainError(
         'ArticleTitle: ' + joiResult.error.details[0].message,
       );
-  }
-
-  public static create(props: IArticleTitleProps): ArticleTitle {
-    return new ArticleTitle(props);
   }
 }
