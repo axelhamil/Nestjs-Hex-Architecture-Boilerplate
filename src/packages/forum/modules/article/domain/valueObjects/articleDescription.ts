@@ -21,7 +21,7 @@ export class ArticleDescription extends ValueObject<IArticleDescriptionProps> {
 
   protected ensureValidFormat(value: IArticleDescriptionProps): void {
     const joiSchema = Joi.object().keys({
-      value: Joi.string().min(3).max(255).allow(null),
+      value: Joi.string().min(3).max(1000).allow(null),
     });
 
     const joiResult = joiSchema.validate(value, {});
