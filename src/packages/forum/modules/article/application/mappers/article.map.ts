@@ -1,5 +1,6 @@
 import { ArticleCreateDTO } from '@article/application/dto/article-create.dto';
 import { Article } from '@article/domain/entities/article';
+import { UniqueEntityID } from '@shared/domain/UniqueEntityID';
 
 export class ArticleMap {
   static toDTO(domain: Article): ArticleCreateDTO {
@@ -18,7 +19,7 @@ export class ArticleMap {
         description: raw.description,
         image: raw.image,
       },
-      raw.id,
+      new UniqueEntityID(raw.id),
     );
   }
 
