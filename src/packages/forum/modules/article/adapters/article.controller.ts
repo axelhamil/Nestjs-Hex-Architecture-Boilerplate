@@ -5,8 +5,8 @@ import {
 } from '@article/application/dto/articles-pagination.dto';
 import { ArticleMap } from '@article/application/mappers/article.map';
 import { ArticleDetailsMap } from '@article/application/mappers/articleDetailsMap';
-import { CreateArticle } from '@article/application/usecases/createArticle.usecase';
-import { GetArticles } from '@article/application/usecases/getArticles.usecase';
+import { CreateArticle } from '@article/application/useCases/createArticle.useCase';
+import { GetArticles } from '@article/application/useCases/getArticles.useCase';
 import {
   Body,
   Controller,

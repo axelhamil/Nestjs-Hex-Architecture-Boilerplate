@@ -32,6 +32,8 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+After, go to `localhost:5000/doc` to see the swagger documentation.
+
 ## Test
 
 ```bash

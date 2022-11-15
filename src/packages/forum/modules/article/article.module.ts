@@ -1,8 +1,8 @@
 import { ArticleController } from '@article/adapters/article.controller';
 import { Articles } from '@article/adapters/models/articles.model';
 import { TypeORMArticleRepository } from '@article/adapters/repositories/typeORM-article.repository';
-import { CreateArticle } from '@article/application/usecases/createArticle.usecase';
-import { GetArticles } from '@article/application/usecases/getArticles.usecase';
+import { CreateArticle } from '@article/application/useCases/createArticle.useCase';
+import { GetArticles } from '@article/application/useCases/getArticles.useCase';
 import { Module } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
